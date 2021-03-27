@@ -1,0 +1,17 @@
+lineData_zyx/
+lineResult_zyx/
+lineData_zyx_tmp/
+synData_zyx/
+synResult_zyx/
+synData_zyx_tmp/
+synResult_zyx_tmp/
+realData_zyx/
+realResult_zyx/
+scaleData/
+scaleResult/
+*.tar.gz
+*.zip
+*.log
+*.pyc
+
+

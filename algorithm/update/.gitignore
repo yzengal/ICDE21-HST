@@ -1,0 +1,6 @@
+updateData_zyx_tmp/
+updateData_zyx/
+updateResult_zyx
+*.pyc
+*.rar
+*.zip
