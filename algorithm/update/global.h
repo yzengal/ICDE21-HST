@@ -17,7 +17,7 @@ typedef pair<double,double> pdd;
 typedef pair<int,double> pid;
 typedef pair<double,int> pdi;
 
-const int MAX_DIM = 10;
+const int MAX_DIM = 2;
 
 struct location_t{
     vector<double> x;

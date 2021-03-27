@@ -40,6 +40,8 @@ reHSTO: the baseline used in our ICDE'21 paper, ie, reHST in our experiments.
 
 HSF: the algorithm proposed in our ICDE'21 paper, ie, HST+HSF in our experiments.
 
+**Notice**, the variable **MAX_DIM** in global.h should be modified based on the dimensions of datasets before compiling.
+
 ### Datasets
 
 dataset/construct: real datasets and synthetic datasets used in our ICDE'21 paper. For example, checkinNYC_2 and checkinTKY_2 are Foursquare datasets, and gaiaChengdu_2 and gaiaHaikou_2 are Didi datasets.
@@ -55,6 +57,8 @@ dataset/update/&#42;.py: our data generators of update experiments for synthetic
 run-scripts/construct: run&#42;.py is used to run the experiments; calc&#42;.py is used to calculate the experimental results; plot&#42;.py is used the plot the experimental figures.
 
 run-scripts/update: run&#42;.py is used to run the experiments; calc&#42;.py is used to calculate the experimental results; plot&#42;.py is used the plot the experimental figures.
+
+**Notice**, the variable **MAX_DIM** in global.h should be modified based on the dimensions of datasets before running any experiments.
 
 Contact
 ------------

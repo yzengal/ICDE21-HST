@@ -145,7 +145,7 @@ void randomization() {
 }
 
 // donot forget to revise freeMemory_HST() to delete the whole tree
-void constructHST_slow(bool load, clock_t startClock) {
+void constructHST(bool load, clock_t startClock) {
 	if (!load)
 		randomization();
 	calcDmax();
