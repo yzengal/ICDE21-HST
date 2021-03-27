@@ -5,7 +5,7 @@ This repository stores the source code of the proposed algorithms to construct o
 
 If you find this work helpful in your research, please consider citing our paper and the bibtex are listed below:
 ```  
-@inproceedings{ZengTC21,
+@inproceedings{DBLP:conf/icde/ZengTC21,
   author    = {Yuxiang Zeng and Yongxin Tong and Lei Chen},
   title     = {HST+: An Efficient Index for Embedding Arbitrary Metric Spaces},
   booktitle   = {{ICDE}},
