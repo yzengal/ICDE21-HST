@@ -54,9 +54,9 @@ dataset/update/&#42;.py: our data generators of update experiments for synthetic
 
 ### Run the algorithm by scripts
 
-run-scripts/construct: run&#42;.py is used to run the experiments; calc&#42;.py is used to calculate the experimental results; plot&#42;.py is used the plot the experimental figures.
+run-scripts/construct: For experiments of constructions, run&#42;.py is used to run the experiments; calc&#42;.py is used to calculate the experimental results; plot&#42;.py is used the plot the experimental figures.
 
-run-scripts/update: run&#42;.py is used to run the experiments; calc&#42;.py is used to calculate the experimental results; plot&#42;.py is used the plot the experimental figures.
+run-scripts/update: For experiments of updates, run&#42;.py is used to run the experiments; calc&#42;.py is used to calculate the experimental results; plot&#42;.py is used the plot the experimental figures.
 
 **Notice**, the variable **MAX_DIM** in global.h should be modified based on the dimensions of datasets before running any experiments.
 
