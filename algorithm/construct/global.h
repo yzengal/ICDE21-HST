@@ -28,7 +28,7 @@ extern const double speed;
 extern const double EPS;
 extern const double INF;
 extern double usedTime;
-extern int usedMemory;
+extern long long usedMemory;
 extern double timeLimit;
 
 int dcmp(double x);  

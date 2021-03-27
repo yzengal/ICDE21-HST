@@ -11,8 +11,6 @@ using namespace std;
 #include "monitor.h"
 #endif
 
-// #define LOCAL_DEBUG
-
 int main(int argc, char **argv) {
 	string srcFileName;
 	string desFileName;
@@ -30,7 +28,7 @@ int main(int argc, char **argv) {
     end_time = clock();
 
     clock_t lastTime = end_time-start_time;
-	printf("ODP %.4lf %d\n", (double)lastTime/CLOCKS_PER_SEC, usedMemory);
+	printf("ODP %.4lf %lld\n", (double)lastTime/CLOCKS_PER_SEC, usedMemory);
     
 	
 	freeMemory_HST();

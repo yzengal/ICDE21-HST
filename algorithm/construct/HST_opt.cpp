@@ -97,7 +97,6 @@ void initLocation(string &fileName) {
     fin >> beta;
     fin >> alpha;
     string a;
-    // getline(fin,a);
 	initMemory_HST(nV);
     for(int i=0;i<nV;i++){
         int tmp = i;
@@ -112,10 +111,6 @@ void initLocation(string &fileName) {
 		for (int j=0; j<MAX_DIM; ++j)
 			fin >> V[i].x[j];
     }
-    //for (int j=0; j<MAX_DIM; ++j)
-	//    printf("%.4lf ", V[nV-1].x[j]);
-    //printf("\n");
-    //fflush(stdout);
     fin.close();
 }
 
@@ -189,11 +184,7 @@ void constructHST_fast_opt(bool load, clock_t startClock) {
 		cen[i] = 0;
 		cenl[i] = dist(V, i, pi[cen[i]]);
 		dmax = max(dmax, cenl[i]);
-		// for (int j=i+1; j<nV; ++j) {
-			// dmax = max(dmax, dist(V, i, j));
-		// }
 	}
-//	printf("dmax = %.2lf\n", dmax);
 	
 	// initialization
 	H = ceil(log2(dmax+EPS)) + 1;	
@@ -209,10 +200,6 @@ void constructHST_fast_opt(bool load, clock_t startClock) {
 	
 	merge_n = 0;
 	for (int k=2; k<=H+1; ++k) {
-		//if (true) {
-		//	printf("k=%d\n", k);
-		//	fflush(stdout);
-		//}
 		radius /= alpha;
 		for (int i=0; i<nV; ++i) {
 			if (cenl[i] < radius)
@@ -220,16 +207,10 @@ void constructHST_fast_opt(bool load, clock_t startClock) {
 			
 			int pid;
 			while (cenl[i] >= radius) {
-				// Prunning 2: skip j
 				pid = pi[++cen[i]];
 				if (cen[pid] <= reverse_pi[i]) {
 					cenl[i] = dist(V, i, pi[cen[i]]);
 				}
-#ifdef LOCAL_DEBUG
-				else {
-					assert(dist(V, i, pi[cen[i]]) >= radius);
-				}
-#endif
 			}
 		}
 		

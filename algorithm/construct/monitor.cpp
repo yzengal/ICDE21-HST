@@ -16,12 +16,23 @@ struct program_t {
 };
 
 void save_time(program_t& prog) {
-	gettimeofday(&prog.real, NULL);
+	clock_gettime(CLOCK_REALTIME, &prog.real);
+	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &prog.proc);
 }
 
 double calc_time(const program_t& st, const program_t& ed) {
 	double ret;
-	ret = (ed.real.tv_sec - st.real.tv_sec) + (ed.real.tv_usec - st.real.tv_usec) / 1000000.0;
+
+	#ifdef USING_PROC_TIME
+	double proc_st = st.proc.tv_sec + (float)st.proc.tv_nsec / 1e9;
+	double proc_ed = ed.proc.tv_sec + (float)ed.proc.tv_nsec / 1e9;
+	ret = proc_ed - proc_st;
+	#else
+	double real_st = st.real.tv_sec + (float)st.real.tv_nsec / 1e9;
+	double real_ed = ed.real.tv_sec + (float)ed.real.tv_nsec / 1e9;
+	ret = real_ed - real_st;
+	#endif /* USING_PROC_TIME */
+
 	return ret;
 }
 
@@ -49,7 +60,7 @@ int get_proc_status(int pid, const char * mark) {
 }
 
 // usedMemory: KByte, usedTime: second
-void watchSolution(pid_t pid, int& usedMemory, int& usedTime, int limitTime) {
+void watchSolution(pid_t pid, long long& usedMemory, int& usedTime, int limitTime) {
 	int tempMemory;
 	int status;
 	struct rusage ruse;
@@ -77,7 +88,7 @@ void watchSolution(pid_t pid, int& usedMemory, int& usedTime, int limitTime) {
 	usedTime += (ruse.ru_stime.tv_sec + ruse.ru_stime.tv_usec / 1000000);
 }
 
-void watchSolutionOnce(pid_t pid, int& usedMemory) {
+void watchSolutionOnce(pid_t pid, long long& usedMemory) {
 	int tempMemory;
 	int status;
 	struct rusage ruse;

@@ -11,7 +11,7 @@ const double EPS = 1e-5;
 const double INF = 1e20;
 // const int MAX_DIM = 20;
 double usedTime = 0.0;
-int usedMemory = 0;
+long long usedMemory = 0;
 double timeLimit = 10 * 24 * 60 * 60; // 10 days
 
 int dcmp(double x) {

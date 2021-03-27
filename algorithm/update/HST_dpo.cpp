@@ -182,40 +182,6 @@ void Tree_t::constructHST(clock_t startClock) {
 				far[p[i]] = q[pid];
 				++i;
 			}
-			// if (nid-_nid > 1) {// calculate distortion
-				// for (int j=bi; j<i; ++j) {
-					// int gid = far[p[j]] - _nid;
-					// ++cnt[gid];
-				// }
-				// for (int j=1; j<nid-_nid; ++j) {
-					// cnt[j] += cnt[j-1];
-				// }
-				// for (int j=i-1; j>=bi; --j) {
-					// int gid = far[p[j]] - _nid;
-					// grp[--cnt[gid]] = p[j];
-				// }
-				// for (int j=0; j<i-bi; ++j) {
-					// int gid = far[grp[j]] - _nid;
-					// for (int _j=0; _j<j; ++_j) {
-						// int _gid = far[grp[_j]] - _nid;
-						// if (gid == _gid) break;
-						// double od = dist(V[grp[j]], V[grp[_j]]);
-						// double td = distAtLevel(k-1);
-						// if (od > 0) {
-							// double ratio = max(td/od, 1.0);
-							// distor = max(distor, ratio);
-							// distor_ += ratio;
-							// cdistor += 1.0;
-							// if (td <= od) {
-								// checkFlag = false;
-							// }
-						// }						
-					// }
-				// }
-				// for (int j=0; j<nid-_nid; ++j) {
-					// cnt[j] = 0;
-				// }
-			// }
 			while (bi < i) {
 				int pid = cen[p[bi]];
 				q[pid] = -1;

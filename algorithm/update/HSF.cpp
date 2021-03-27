@@ -36,9 +36,6 @@ pair<double,double> getPartDistortion() {
 
 		for (int j=0; j<locs.size()-clocs.size()+i; ++j) {
 			v = rmp[j];
-#ifdef LOCAL_DEBUG
-			assert(deleted[v] == false);
-#endif
 //			if (deleted[v])
 //				continue;
 			vTreeId = whichTree[v], vTreePos = posTree[v];
@@ -49,44 +46,15 @@ pair<double,double> getPartDistortion() {
 				nnPair = uTree.nns[vTreeId][uTreePos];
 				nnId = nnPair.first, nnDis = nnPair.second;
 				dt = vTree.distOnHST(vTreePos, nnId) + nnDis;
-#ifdef LOCAL_DEBUG
-//		printf("In partDistor (%d,%d): NN(%d,%d) = %d with dist %.4lf\n", u,v, u, vTreeId, nnId, nnDis);
-//		fflush(stdout);
-#endif
-#ifdef LOCAL_DEBUG
-				if (dt < d-EPS) {
-//					printf("In partDistor (%d,%d): NN(%d,%d) = %d with dist %.4lf\n", u,v, u, vTreeId, nnId, nnDis);
-//					fflush(stdout);
-					printf("Partial: Case 1\n");
-					printf("d = %.4lf, dt = %.4lf\n", d, dt);
-					fflush(stdout);
-					exit(0);
-				}
-#endif
 			} else if (vTreeId > uTreeId) {
 				// the NN of vTreeId may be invalid since uTree has been updated.
 				vTree.updateNeighbour(vTreePos, uTreeId, uTree);
 				nnPair = vTree.nns[uTreeId][vTreePos];
 				nnId = nnPair.first, nnDis = nnPair.second;
 				dt = uTree.distOnHST(uTreePos, nnId) + nnDis;
-#ifdef LOCAL_DEBUG
-				if (dt < d-EPS) {
-					printf("Partial: Case 2\n");
-					fflush(stdout);
-				}
-#endif
 			} else {// if (vTreeId == uTreeId)
 				dt = uTree.distOnHST(uTreePos, vTreePos);
-#ifdef LOCAL_DEBUG
-				if (dt < d-EPS) {
-					printf("Partial: Case 3\n");
-					fflush(stdout);
-				}
-#endif
 			}
-#ifdef LOCAL_DEBUG
-			//assert(dt >= d-EPS);
-#endif
 			if (d > 0) {
 				rat = max(dt/d, 1.0);
 				ret = max(ret, rat);
@@ -105,10 +73,6 @@ pair<double,double> getPartDistortion() {
 		ret_ /= cnt;
 	}
 	
-	// if (!checkFlag) {
-		// puts("false");
-	// }
-	
 	return make_pair(ret, ret_);	
 }
 
@@ -116,9 +80,6 @@ int getNextTree() {
 	int dmin = INT_MAX, ret = 1;
 	
 	for (int i=1; i<HSF_SIZE; ++i) {
-//#ifdef LOCAL_DEBUG
-//		printf("%d: nV = %d, dV = %d, INF = %d\n", i, bs_trees[i].nV, bs_trees[i].dV, dmin);
-//#endif
 		if (bs_trees[i].nV-bs_trees[i].dV < dmin) {
 			dmin = bs_trees[i].nV-bs_trees[i].dV;
 			ret = i;
@@ -146,10 +107,6 @@ void rebuild(int treeId) {
 			bs_tree.initNeighbours(i, bs_trees[i]);
 		}
 	} else {// we need to rebuild the tree
-#ifdef LOCAL_DEBUG
-//		printf("In rebuild-case 2: nV = %d, dV = %d\n", bs_tree.nV, bs_tree.dV);
-//		fflush(stdout);
-#endif
 		int _nV = bs_tree.nV - bs_tree.dV;
 		bs_tree.loadLocation(clocs.size(), clocs, cids, alpha);
 		bs_tree.constructHST(start_time);
@@ -232,8 +189,7 @@ void static_input() {
 		posTree[cids[i]] = i;
 	}
 	bs_tree.constructHST(start_time);
-	//printf("Mine: %.8lf %.8lf\n", bs_tree.distor, bs_tree.distor_);
-	//fflush(stdout);
+
 	end_time = clock();
 	pair<double,double> tmp = make_pair(bs_tree.distor, bs_tree.distor_);
 	obj.first = max(obj.first, tmp.first);
@@ -289,7 +245,6 @@ int main(int argc, char **argv) {
 		desFileName = string(argv[2]);
 
 	freopen(srcFileName.c_str(), "r", stdin);
-	// freopen("data.out", "w", stdout);
 
 	start_time = clock();
 	
@@ -303,10 +258,10 @@ int main(int argc, char **argv) {
 	
 	static_input();
 	
-        /*
-	 * rebuild can only happen in the insert part
-	 * So I remove it to inside the dec_or_inc
-	 */
+	/*
+	* rebuild can only happen in the insert part
+	* So I remove it to inside the dec_or_inc
+	*/
 
 	// rebuild(alpha,time_limit);
 	for (int i = 2; i <= nop; ++i) { // the first op is static input...

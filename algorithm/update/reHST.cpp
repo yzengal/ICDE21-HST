@@ -51,10 +51,6 @@ pair<double,double> getPartDistortion() {
 		ret_ /= cnt;
 	}
 	
-	// if (!checkFlag) {
-		// puts("false");
-	// }
-	
 	return make_pair(ret, ret_);	
 }
 
@@ -116,8 +112,7 @@ void static_input() {
 	last_time = clock();
 	bs_tree.initLocation(locs.size(), locs, alpha);
 	bs_tree.constructHST_slow(start_time);
-//	printf("Mine: %.8lf %.8lf\n", bs_tree.distor, bs_tree.distor_);
-//	fflush(stdout);
+
 	end_time = clock();
 	pair<double,double> tmp = make_pair(1.0,1.0); //make_pair(bs_tree.distor, bs_tree.distor_);//bs_tree.getDistortion();
 	obj.first = max(obj.first, tmp.first);
@@ -172,8 +167,6 @@ int main(int argc, char **argv) {
 		desFileName = string(argv[2]);
 	freopen(srcFileName.c_str(), "r", stdin);
 	
-	//freopen("data.out", "w", stdout);
-	
 	start_time = clock();
 	scanf("%d %d %lf", &tot_n, &nop, &alpha);
 	mp = new int[tot_n+5];
@@ -183,10 +176,10 @@ int main(int argc, char **argv) {
 	
 	static_input();
 	
-        /*
-	 * rebuild can only happen in the insert part
-	 * So I remove it to inside the dec_or_inc
-	 */
+	/*
+	* rebuild can only happen in the insert part
+	* So I remove it to inside the dec_or_inc
+	*/
 
 	// rebuild(alpha,time_limit);
 	for (int i = 2; i <= nop; ++i) { // the first op is static input...

@@ -15,14 +15,15 @@
 using namespace std;
 
 struct program_t {
-	struct timeval real;
+	struct timespec real;
+	struct timespec proc;
 };
 
 void save_time(program_t& prog);
 double calc_time(const program_t& st, const program_t& ed);
 int get_proc_status(int pid, const char* mark);
-void watchSolution(pid_t pid, int& usedMemory, int& usedTime, int limitTime);
-void watchSolutionOnce(pid_t pid, int& usedMemory);
+void watchSolution(pid_t pid, long long& usedMemory, int& usedTime, int limitTime);
+void watchSolutionOnce(pid_t pid, long long& usedMemory);
 
 
 

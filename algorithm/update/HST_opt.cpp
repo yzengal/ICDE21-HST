@@ -166,40 +166,6 @@ void Tree_t::constructHST(clock_t startClock) {
 				far[p[i]] = q[pid];
 				++i;
 			}
-			// if (nid-_nid > 1) {// calculate distortion
-				// for (int j=bi; j<i; ++j) {
-					// int gid = far[p[j]] - _nid;
-					// ++cnt[gid];
-				// }
-				// for (int j=1; j<nid-_nid; ++j) {
-					// cnt[j] += cnt[j-1];
-				// }
-				// for (int j=i-1; j>=bi; --j) {
-					// int gid = far[p[j]] - _nid;
-					// grp[--cnt[gid]] = p[j];
-				// }
-				// for (int j=0; j<i-bi; ++j) {
-					// int gid = far[grp[j]] - _nid;
-					// for (int _j=0; _j<j; ++_j) {
-						// int _gid = far[grp[_j]] - _nid;
-						// if (gid == _gid) break;
-						// double od = dist(V[grp[j]], V[grp[_j]]);
-						// double td = distAtLevel(k-1);
-						// if (od > 0) {
-							// double ratio = max(td/od, 1.0);
-							// distor = max(distor, ratio);
-							// distor_ += ratio;
-							// cdistor += 1.0;
-							// if (td < od) {
-								// checkFlag = false;
-							// }
-						// }						
-					// }
-				// }
-				// for (int j=0; j<nid-_nid; ++j) {
-					// cnt[j] = 0;
-				// }
-			// }
 			while (bi < i) {
 				int pid = cen[p[bi]];
 				q[pid] = -1;
@@ -342,9 +308,6 @@ pair<double,double> Tree_t::getDistortion() {
 				continue;
 			d = dist(V[i], V[j]);
 			dt = distOnHST(leaves[i], leaves[j]);
-#ifdef LOCAL_DEBUG
-			assert(dt >= d-EPS);
-#endif
 			if (d > 0) {
 				rat = max(dt/d, 1.0);
 				distor = max(distor, rat);
@@ -379,10 +342,6 @@ void Tree_t::initNeighbours(int idx, Tree_t& oth) {
 			}
 		}
 		nns[idx][i] = make_pair(id, dmin);
-//#ifdef LOCAL_DEBUG
-//		printf("In initNN: NN(%d,%d) = %d with dist %.4lf\n", ids[i], idx, oth.ids[id], dmin);
-//		fflush(stdout);
-//#endif
 	}
 }
 
@@ -404,17 +363,10 @@ void Tree_t::updateNeighbours(int idx, Tree_t& oth) {
 			}
 		}
 		nns[idx][i] = make_pair(id, dmin);
-//#ifdef LOCAL_DEBUG
-//		printf("In updateNN: NN(%d,%d) = %d with dist %.4lf\n", ids[i], idx, oth.ids[id], dmin);
-//		fflush(stdout);
-//#endif
 	}
 }
 
 void Tree_t::updateNeighbour(int i, int idx, Tree_t& oth) {
-#ifdef LOCAL_DEBUG
-	assert(deleted[i] == false);
-#endif
 	int nnId = nns[idx][i].first;
 	if (idx==0 && nnId>=0)
 		return;
@@ -452,9 +404,6 @@ void Tree_t::loadLocation(int nV_, vector<location_t> &V_, vector<int>& ids_, do
 		}
 		++_nV;
 	}
-#ifdef LOCAL_DEBUG
-	assert(nV == _nV+dV);
-#endif
 	dV=0, nV = _nV+nV_, alpha = alpha_;
 	
 	// 2. sample beta
@@ -478,7 +427,6 @@ void Tree_t::loadLocation(int nV_, vector<location_t> &V_, vector<int>& ids_, do
 	for (int j=0; j<nns.size(); ++j) {
 		nns[j].resize(nV);
 		fill(nns[j].begin()+_nV, nns[j].end(), make_pair(-1,INF));
-		//fill(nns[j].begin(), nns[j].end(), make_pair(-1,INF));
 	}
 	
 	// 4. load the new locations

@@ -11,8 +11,6 @@ using namespace std;
 #include "monitor.h"
 #endif
 
-// #define LOCAL_DEBUG
-
 int main(int argc, char **argv) {
 	string srcFileName;
 	string desFileName;
@@ -26,11 +24,11 @@ int main(int argc, char **argv) {
 	
 	initLocation(srcFileName);
     start_time = clock();
-	constructHST_slow(true, start_time);
+	constructHST(true, start_time);
     end_time = clock();
 	
     clock_t lastTime = end_time-start_time;
-	printf("BF %.4lf %d\n", (double)lastTime/CLOCKS_PER_SEC, usedMemory);
+	printf("BF %.4lf %lld\n", (double)lastTime/CLOCKS_PER_SEC, usedMemory);
 	
 	freeMemory_HST();
 	fclose(stdout);
