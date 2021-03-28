@@ -1,5 +1,6 @@
 # ICDE21-HST
 This repository stores the source code of the proposed algorithms to construct or update a Hierarchically Separated Tree (HST) in the following paper.
+ICDE21-HST-Full.pdf is the full paper and ICDE21-HST-github.ppsx is our presentation slides.
 
 [1] Yuxiang Zeng, Yongxin Tong, Lei Chen. "HST+: An Efficient Index for Embedding Arbitrary Metric Spaces." IEEE International Conference on Data Engineering (**ICDE**), 2021.
 
