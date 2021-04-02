@@ -45,9 +45,9 @@ HSF: the algorithm proposed in our ICDE'21 paper, ie, HST+HSF in our experiments
 
 ### Datasets
 
-dataset/construct: real datasets and synthetic datasets used in our ICDE'21 paper. For example, checkinNYC_2 and checkinTKY_2 are Foursquare datasets, and gaiaChengdu_2 and gaiaHaikou_2 are Didi datasets.
+dataset/construct: real datasets and synthetic datasets used in our ICDE'21 paper. For example, checkinNYC_2 and checkinTKY_2 are Foursquare datasets.
 
-dataset/update: real datasets and synthetic datasets used in our ICDE'21 paper. For example, checkinTKY_2 is the Foursquare dataset, gaiaHaikou_2 is the Didi dataset, and exp_2 is the synthetic dataset under the exponential distribution.
+dataset/update: real datasets and synthetic datasets used in our ICDE'21 paper. For example, checkinTKY_2 is the Foursquare datasetand exp_2 is the synthetic dataset under the exponential distribution.
 
 dataset/construct/&#42;.py: our data generators of construction experiments for synthetic datasets and scalability tests.
 
